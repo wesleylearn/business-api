@@ -1,0 +1,9 @@
+{
+  "name": "business-app",
+  "version": "1.0.0",
+  "description": "simple business app for employee management",
+  "main": "index.js",
+  "scripts": {},
+  "author": "wesleybertipaglia",
+  "license": "MIT"
+}
