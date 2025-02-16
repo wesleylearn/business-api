@@ -1,13 +1,13 @@
 import { ObjectId } from "mongodb";
 
 export interface UserDetailsDto {
-  id: ObjectId | undefined;
+  id: string | ObjectId | undefined;
   name: string;
   email: string;
 }
 
 export interface UserSummaryDto {
-  id: ObjectId | undefined;
+  id: string | ObjectId | undefined;
   name: string;
 }
 

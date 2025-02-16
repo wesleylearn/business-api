@@ -1,9 +1,9 @@
+import { Security } from "@/infra/security.infra";
 import bcrypt from "bcryptjs";
-import { config } from "@/config";
 
 export class PasswordHelper {
   static hashPassword(password: string): Promise<string> {
-    return bcrypt.hash(password, config.password.saltRounds);
+    return bcrypt.hash(password, Security.password.saltRounds);
   }
 
   static verifyPassword(

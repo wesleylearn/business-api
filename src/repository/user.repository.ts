@@ -1,7 +1,7 @@
 import { BaseRepository } from "@/repository/base.repository";
 import { User } from "@/model/user.model";
 import { UserMapper } from "@/mapper/user.mapper";
-import { Database } from "@/infra/database";
+import { Database } from "@/infra/database.infra";
 
 export class UserRepository extends BaseRepository<User> {
   constructor() {

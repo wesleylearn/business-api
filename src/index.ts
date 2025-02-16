@@ -1,9 +1,14 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import { AuthRouter } from "@/route/auth.route";
-import { ProfileRouter } from "./route/profile.route";
-import { Database } from "@/infra/database";
-import { ErrorMiddleware } from "./middleware/error.middleware";
+import { ProfileRouter } from "@/route/profile.route";
+import { Database } from "@/infra/database.infra";
+import { ErrorMiddleware } from "@/middleware/error.middleware";
+import { Server } from "@/infra/server.infra";
+import dotenv from "dotenv";
+
+// dotenv
+dotenv.config();
 
 // mongodb
 const database = Database.getInstance();
@@ -33,8 +38,8 @@ const start = async () => {
       allowedHeaders: ["Content-Type", "Authorization"],
     });
 
-    await server.listen({ port: 3000 });
-    console.log(`Server is running on port ${3000}`);
+    await server.listen({ port: Server.port });
+    console.log(`Server is running on port ${Server.port}`);
   } catch (err) {
     console.error("Server startup error:", err);
     process.exit(1);
