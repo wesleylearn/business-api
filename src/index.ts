@@ -1,21 +1,32 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
-import { PrismaClient } from "@prisma/client";
+import { AuthRouter } from "@/route/auth.route";
+import { ProfileRouter } from "./route/profile.route";
+import { Database } from "@/infra/database";
+import { ErrorMiddleware } from "./middleware/error.middleware";
 
-// prisma
-const prisma = new PrismaClient();
+// mongodb
+const database = Database.getInstance();
 
 // server
 const server = fastify({ logger: true });
 
+// middleware
+server.setErrorHandler(ErrorMiddleware.handle);
+
 // routes
-server.get("/", async function handler(req, res) {
-  return { hello: "world" };
-});
+const routes = () => {
+  new AuthRouter(server, "/api/v1").register();
+  new ProfileRouter(server, "/api/v1").register();
+};
 
 // start
 const start = async () => {
   try {
+    await database.connect();
+
+    routes();
+
     await server.register(cors, {
       origin: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -34,7 +45,7 @@ const start = async () => {
 const shutdown = async () => {
   try {
     await server.close();
-    await prisma.$disconnect();
+    await database.disconnect();
   } catch (err) {
     console.error("Error during shutdown:", err);
   } finally {
