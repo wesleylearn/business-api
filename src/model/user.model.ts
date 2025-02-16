@@ -1,20 +1,14 @@
-import { ObjectId, Document } from "mongodb";
+import { Base } from "@/model/base.model";
 
-export class User implements Document {
-  _id?: ObjectId | string;
+export class User extends Base {
   name: string;
   email: string;
   password: string;
-  createdAt: Date;
-  updatedAt: Date;
-  _doc: any;
 
   constructor(data: Partial<User>) {
-    this._id = data._id;
+    super(data);
     this.name = data.name || "";
     this.email = data.email || "";
     this.password = data.password || "";
-    this.createdAt = data.createdAt || new Date();
-    this.updatedAt = data.updatedAt || new Date();
   }
 }
