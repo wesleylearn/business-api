@@ -7,7 +7,7 @@ Simple business api for employee management
 - [x] NPM
 - [x] TypeScript
 - [x] Fastify
-- [x] Prisma
+- [x] Mongo
 - [x] Docker
 
 ## Auth Service
@@ -19,5 +19,11 @@ Simple business api for employee management
 - [x] Repository (base, user)
 - [x] Service (base, user, auth)
 - [x] Controller (base, auth, profile)
-- [x] Route (auth, profile)
+- [x] Router (auth, profile)
 - [x] Middleware (auth, error)
+
+## Employee Service
+
+- [ ] Service
+- [ ] Controller
+- [ ] Router
