@@ -1,5 +1,7 @@
 import { Secret } from "jsonwebtoken";
 import { JwtDto, PasswordDto } from "@/dto/security.dto";
+import dotenv from "dotenv";
+dotenv.config();
 
 export class Security {
   public static jwt: JwtDto = {
