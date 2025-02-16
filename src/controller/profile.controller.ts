@@ -3,7 +3,7 @@ import { ProfileService } from "@/service/profile.service";
 import { UserDetailsDto, UserSummaryDto, UserUpdateDto } from "@/dto/user.dto";
 import { AuthSignupRequestDto } from "@/dto/auth.dto";
 import { BaseController } from "@/controller/base.controller";
-import { User } from "@prisma/client";
+import { User } from "@/model/user.model";
 import { AuthHelper } from "@/helper/auth.helper";
 
 export class ProfileController extends BaseController<
