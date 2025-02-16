@@ -6,6 +6,7 @@ import { Database } from "@/infra/database.infra";
 import { ErrorMiddleware } from "@/middleware/error.middleware";
 import { Server } from "@/infra/server.infra";
 import dotenv from "dotenv";
+import { EmployeeRouter } from "./route/employee.route";
 
 // dotenv
 dotenv.config();
@@ -23,6 +24,7 @@ server.setErrorHandler(ErrorMiddleware.handle);
 const routes = () => {
   new AuthRouter(server, "/api/v1").register();
   new ProfileRouter(server, "/api/v1").register();
+  new EmployeeRouter(server, "/api/v1").register();
 };
 
 // start

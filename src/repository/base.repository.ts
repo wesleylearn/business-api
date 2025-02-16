@@ -7,6 +7,11 @@ export class BaseRepository<T> {
     protected readonly mapper: BaseMapper<T, any, any>
   ) {}
 
+  async findAll(): Promise<T[]> {
+    const results = await this.collection.find().toArray();
+    return results.map(this.mapper.toEntity);
+  }
+
   async findById(id: string): Promise<T | null> {
     const result = await this.collection.findOne({
       _id: new ObjectId(id),
@@ -14,9 +19,8 @@ export class BaseRepository<T> {
     return result ? this.mapper.toEntity(result) : null;
   }
 
-  async findAll(): Promise<T[]> {
-    const results = await this.collection.find().toArray();
-    return results.map(this.mapper.toEntity);
+  async countById(id: string): Promise<number> {
+    return this.collection.countDocuments({ _id: new ObjectId(id) } as any);
   }
 
   async create(data: Partial<T>): Promise<T> {
